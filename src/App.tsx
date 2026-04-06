@@ -56,7 +56,7 @@ const team = [
   { name: "Yundi Zhang", initials: "YZ" },
 ];
 
-const dynamicPhrases = ["data collection", "literature review", "statistical analysis", "paper writing"];
+const dynamicPhrases = ["data collection", "statistical analysis", "literature review", "paper writing", "AI peer review"];
 
 /* ── Components ───────────────────────────────────────────── */
 
@@ -146,7 +146,7 @@ export default function App() {
             <span className="inline-block px-3 py-1 text-xs font-medium rounded-full border border-white/10 bg-white/5 text-white/70">Built on Claude Code</span>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4 }} className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight tracking-tight">
-            <span className="block mb-2">Your AI research partner for</span>
+            <span className="block mb-2">Your Communication research AI partner for</span>
             <span className="block" style={{ minHeight: "1.2em", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <TypingEffect />
             </span>
