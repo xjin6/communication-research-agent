@@ -121,9 +121,12 @@ export default function App() {
       <SplashCursor />
 
       {/* Nav */}
-      <nav className="fixed top-0 w-full z-40 backdrop-blur-md bg-[#0a0a0b]/60 border-b border-white/5">
+      <nav className="fixed top-0 w-full z-40 backdrop-blur-md bg-[#0a0a0b]/80 border-b border-purple-500/15">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <span className="text-sm font-semibold tracking-tight">Comm Research Agent</span>
+          <a href="#" className="flex items-center gap-2.5 group">
+            <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="Logo" className="w-7 h-7 rounded-md transition-transform duration-300 group-hover:scale-110" />
+            <span className="text-sm font-semibold tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent">Communication Research Agent</span>
+          </a>
           <div className="hidden md:flex items-center gap-8">
             {["About", "Cases", "Skills", "Team", "Deploy"].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="text-sm text-white/50 hover:text-white transition-colors relative group">
@@ -352,7 +355,7 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 bg-[#0a0a0b] py-12 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="text-sm font-medium text-white/40">Comm Research Agent</span>
+          <span className="text-sm font-medium text-white/40">Communication Research Agent</span>
           <p className="text-xs text-white/30">By Xin Jin &middot; MIT License</p>
         </div>
       </footer>
