@@ -25,28 +25,28 @@ function GithubIcon({ size = 16, className = "" }: { size?: number; className?: 
 /* ── Data ─────────────────────────────────────────────────── */
 
 const pillars = [
-  { title: "General Knowledge", description: "Shared theory and methods knowledge base that grounds the agent in communication studies fundamentals.", icon: BookOpen, img: "https://picsum.photos/seed/knowledge/800/600" },
-  { title: "Research Skills", description: "Modular, reusable skills for data scraping, statistical analysis, and academic writing.", icon: PenTool, img: "https://picsum.photos/seed/analytics/800/600" },
-  { title: "Your Project Context", description: "Describe your study in context.md — the agent reads it automatically and tailors every response.", icon: FileText, img: "https://picsum.photos/seed/documents/800/600" },
-  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", icon: Terminal, img: "https://picsum.photos/seed/technology/800/600" },
+  { title: "General Knowledge", description: "Shared theory and methods knowledge base that grounds the agent in communication studies fundamentals.", icon: BookOpen, img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop" },
+  { title: "Research Skills", description: "Modular, reusable skills for data scraping, statistical analysis, and academic writing.", icon: PenTool, img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" },
+  { title: "Your Project Context", description: "Describe your study in context.md — the agent reads it automatically and tailors every response.", icon: FileText, img: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800&h=600&fit=crop" },
+  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", icon: Terminal, img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop" },
 ];
 
 const cases = [
-  { title: "From Weibo hashtag to regression table in one session", category: "End-to-End", description: "A researcher asked the agent to scrape 2,000 Weibo posts about a public health campaign, clean the data, run sentiment analysis, and build a regression model predicting engagement — all completed in a single conversation.", img: "https://picsum.photos/seed/socialmedia/800/600" },
-  { title: "Literature review draft overnight", category: "End-to-End", description: "Given 35 PDF papers and a research question about algorithmic bias in news recommendation, the agent extracted key findings, organized themes, and produced a structured literature review with APA citations ready for revision.", img: "https://picsum.photos/seed/literature/800/600" },
-  { title: "Survey analysis to manuscript in 48 hours", category: "End-to-End", description: "Starting from raw Qualtrics data, the agent performed CFA, built a structural equation model, generated publication-ready tables and figures, and drafted the results and discussion sections of a journal manuscript.", img: "https://picsum.photos/seed/manuscript/800/600" },
+  { title: "From Weibo hashtag to regression table in one session", category: "End-to-End", description: "A researcher asked the agent to scrape 2,000 Weibo posts about a public health campaign, clean the data, run sentiment analysis, and build a regression model predicting engagement — all completed in a single conversation.", img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop" },
+  { title: "Literature review draft overnight", category: "End-to-End", description: "Given 35 PDF papers and a research question about algorithmic bias in news recommendation, the agent extracted key findings, organized themes, and produced a structured literature review with APA citations ready for revision.", img: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&h=600&fit=crop" },
+  { title: "Survey analysis to manuscript in 48 hours", category: "End-to-End", description: "Starting from raw Qualtrics data, the agent performed CFA, built a structural equation model, generated publication-ready tables and figures, and drafted the results and discussion sections of a journal manuscript.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" },
 ];
 
 import skillsData from "./data/skills.json";
-const skills: { name: string; version: string; category: string; description: string; author: string }[] = skillsData;
+const skills: { name: string; version: string; category: string; description: string; author: string; lastUpdate?: string }[] = skillsData;
 
 const team = [
-  { name: "Xin Jin", initials: "XJ" },
-  { name: "Xingjian Wang", initials: "XW" },
-  { name: "Qianying Ye", initials: "QY" },
-  { name: "Sha Qiu", initials: "SQ" },
-  { name: "Lihan Yan", initials: "LY" },
-  { name: "Yundi Zhang", initials: "YZ" },
+  { name: "Xin Jin", initials: "XJ", affiliation: "Microsoft" },
+  { name: "Xingjian Wang", initials: "XW", affiliation: "Tsinghua University" },
+  { name: "Qianying Ye", initials: "QY", affiliation: "The Hong Kong Polytechnic University" },
+  { name: "Sha Qiu", initials: "SQ", affiliation: "University of Macau" },
+  { name: "Lihan Yan", initials: "LY", affiliation: "Nanjing University" },
+  { name: "Yundi Zhang", initials: "YZ", affiliation: "Fudan University" },
 ];
 
 const dynamicPhrases = ["data collection", "statistical analysis", "literature review", "paper writing", "AI peer review"];
@@ -84,6 +84,8 @@ function TypingEffect() {
   );
 }
 
+let tabClickActive = false;
+
 function FadeIn({ children, className = "", delay = 0, y = 40 }: { children: React.ReactNode; className?: string; delay?: number; y?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -92,17 +94,17 @@ function FadeIn({ children, className = "", delay = 0, y = 40 }: { children: Rea
     ScrollTrigger.create({
       trigger: el,
       start: "top bottom",
-      onEnter: () => { gsap.fromTo(el, { opacity: 0, y }, { opacity: 1, y: 0, duration: 0.8, delay, ease: "power3.out" }); },
-      onLeave: () => { gsap.set(el, { opacity: 0, y }); },
-      onEnterBack: () => { gsap.set(el, { opacity: 1, y: 0 }); },
-      onLeaveBack: () => { gsap.set(el, { opacity: 0, y }); },
+      onEnter: () => { if (!tabClickActive) gsap.fromTo(el, { opacity: 0, y }, { opacity: 1, y: 0, duration: 0.8, delay, ease: "power3.out" }); },
+      onLeave: () => { if (!tabClickActive) gsap.set(el, { opacity: 0, y }); },
+      onEnterBack: () => { if (!tabClickActive) gsap.set(el, { opacity: 1, y: 0 }); },
+      onLeaveBack: () => { if (!tabClickActive) gsap.set(el, { opacity: 0, y }); },
     });
     return () => { ScrollTrigger.getAll().forEach(t => { if (t.trigger === el) t.kill(); }); };
   }, [delay, y]);
-  return <div ref={ref} className={className} style={{ opacity: 0 }}>{children}</div>;
+  return <div ref={ref} className={className} data-animate style={{ opacity: 0 }}>{children}</div>;
 }
 
-function StaggerChildren({ children, className = "", stagger = 0.1 }: { children: React.ReactNode; className?: string; stagger?: number }) {
+function StaggerChildren({ children, className = "", stagger = 0.1, delay = 0 }: { children: React.ReactNode; className?: string; stagger?: number; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -110,14 +112,14 @@ function StaggerChildren({ children, className = "", stagger = 0.1 }: { children
     ScrollTrigger.create({
       trigger: el,
       start: "top bottom",
-      onEnter: () => { gsap.fromTo(el.children, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, stagger, ease: "power3.out" }); },
-      onLeave: () => { gsap.set(el.children, { opacity: 0, y: 40 }); },
-      onEnterBack: () => { gsap.set(el.children, { opacity: 1, y: 0 }); },
-      onLeaveBack: () => { gsap.set(el.children, { opacity: 0, y: 40 }); },
+      onEnter: () => { if (!tabClickActive) gsap.fromTo(el.children, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, delay, stagger, ease: "power3.out" }); },
+      onLeave: () => { if (!tabClickActive) gsap.set(el.children, { opacity: 0, y: 40 }); },
+      onEnterBack: () => { if (!tabClickActive) gsap.set(el.children, { opacity: 1, y: 0 }); },
+      onLeaveBack: () => { if (!tabClickActive) gsap.set(el.children, { opacity: 0, y: 40 }); },
     });
     return () => { ScrollTrigger.getAll().forEach(t => { if (t.trigger === el) t.kill(); }); };
-  }, [stagger]);
-  return <div ref={ref} className={className}>{children}</div>;
+  }, [stagger, delay]);
+  return <div ref={ref} className={className} data-animate-stagger>{children}</div>;
 }
 
 const navItems = ["About", "Skills", "Cases", "Team", "Deploy"];
@@ -144,6 +146,12 @@ function useActiveSection() {
 export default function App() {
   const activeSection = useActiveSection();
   const [heroKey, setHeroKey] = useState(0);
+  const [skillCategory, setSkillCategory] = useState("All");
+  const [skillAuthor, setSkillAuthor] = useState("All");
+  const filteredSkills = skills.filter((s) =>
+    (skillCategory === "All" || s.category === skillCategory) &&
+    (skillAuthor === "All" || s.author === skillAuthor)
+  );
   return (
     <div className="relative min-h-screen bg-[#0a0a0b] text-[#f0ece6] font-sans" style={{ background: "linear-gradient(180deg, #0a0a0b 0%, #0e0e18 20%, #0a0b10 40%, #110e14 60%, #0b0c12 80%, #0a0a0b 100%)" }}>
       <SplashCursor />
@@ -166,7 +174,37 @@ export default function App() {
       <nav className="fixed top-0 w-full z-40 backdrop-blur-md bg-[#0f0f11]/85 border-b border-white/[0.08]">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "instant" }); setHeroKey((k) => k + 1); }} className="flex items-center gap-2.5 group">
-            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo" className="w-7 h-7 rounded-md transition-transform duration-300 group-hover:scale-110" />
+            <div className="relative w-8 h-8 transition-transform duration-300 group-hover:scale-110">
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo" className="relative w-full h-full" />
+              {/* Light dot tracing the C outline */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 32 32">
+                <defs>
+                  <filter id="dot-glow" x="-200%" y="-200%" width="500%" height="500%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge><feMergeNode in="blur" /><feMergeNode in="blur" /></feMerge>
+                  </filter>
+                  <radialGradient id="dot-grad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#fff" stopOpacity="1" />
+                    <stop offset="30%" stopColor="#e9d5ff" stopOpacity="0.8" />
+                    <stop offset="70%" stopColor="#a855f7" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+                {/* C-shaped arc (top-right → counterclockwise → bottom-right) then dash back */}
+                <circle r="3.5" fill="url(#dot-grad)" filter="url(#dot-glow)">
+                  <animateMotion
+                    dur="3.5s"
+                    repeatCount="indefinite"
+                    path="M 22 7.5 C 22 7.5 24 6 20 5 C 14 3.5 7 6 5.5 12 C 4 18 6 24 12 27 C 16 28.5 20 28 22 25.5 L 22 7.5"
+                    keyPoints="0;0.85;1"
+                    keyTimes="0;0.9;1"
+                    calcMode="spline"
+                    keySplines="0.4 0 0.6 1;0.1 0 0.3 1"
+                  />
+                  <animate attributeName="opacity" dur="3.5s" repeatCount="indefinite" values="0.9;0.9;0;0.9" keyTimes="0;0.85;0.92;1" />
+                </circle>
+              </svg>
+            </div>
             <span className="text-sm font-semibold tracking-tight bg-gradient-to-r from-white/90 to-white/60 bg-clip-text text-transparent">Communication Research Agent</span>
           </a>
           <div className="hidden md:flex items-center gap-8">
@@ -177,17 +215,25 @@ export default function App() {
                   e.preventDefault();
                   const section = document.getElementById(item.toLowerCase());
                   if (!section) return;
-                  // Collect animated elements: direct FadeIn wrappers + StaggerChildren's children
-                  const fadeEls = section.querySelectorAll<HTMLElement>(":scope > div [style]");
-                  const targets: HTMLElement[] = [];
-                  fadeEls.forEach((el) => { if (el.style.opacity !== undefined) targets.push(el); });
-                  // Reset all to invisible
-                  gsap.set(targets, { opacity: 0, y: 30 });
+                  // Block ScrollTrigger callbacks during tab navigation
+                  tabClickActive = true;
+                  // Reset FadeIn elements
+                  const fadeEls = section.querySelectorAll<HTMLElement>("[data-animate]");
+                  gsap.set(fadeEls, { opacity: 0, y: 40 });
+                  // Reset StaggerChildren's children
+                  const staggerContainers = section.querySelectorAll<HTMLElement>("[data-animate-stagger]");
+                  staggerContainers.forEach((container) => {
+                    gsap.set(container.children, { opacity: 0, y: 40 });
+                  });
                   // Jump to section
                   section.scrollIntoView({ behavior: "instant" });
-                  // Replay animations with stagger
+                  // Replay animations after scroll settles
                   requestAnimationFrame(() => {
-                    gsap.to(targets, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power3.out" });
+                    tabClickActive = false;
+                    gsap.to(fadeEls, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" });
+                    staggerContainers.forEach((container) => {
+                      gsap.to(container.children, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.2 });
+                    });
                   });
                 }} className={`text-sm relative group transition-colors duration-300 cursor-pointer ${isActive ? "text-white" : "text-white/50 hover:text-white"}`}>
                   {item}
@@ -237,7 +283,7 @@ export default function App() {
             {pillars.map((p) => (
               <div key={p.title} className="rounded-xl bg-white/[0.03] border border-white/8 flex flex-col overflow-hidden">
                 <div className="w-full aspect-[4/3] relative overflow-hidden">
-                  <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-60" loading="lazy" />
+                  <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-90" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
                 </div>
                 <div className="p-5 flex flex-col">
@@ -263,18 +309,32 @@ export default function App() {
             </FadeIn>
           </div>
 
-          <FadeIn delay={0.2} className="flex items-center gap-4 mb-5 text-xs text-white/40">
-            <span><span className="text-white/70 font-semibold">{skills.length}</span> skills</span>
+          {/* Filters */}
+          <FadeIn delay={0.2} className="flex flex-wrap items-center gap-3 mb-6">
+            <span className="text-xs text-white/30 mr-1">Filter</span>
+            {["All", ...Array.from(new Set(skills.map((s) => s.category)))].map((cat) => (
+              <button key={cat} onClick={() => setSkillCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillCategory === cat ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                {cat}
+              </button>
+            ))}
+            <span className="mx-2 w-px h-4 bg-white/10" />
+            {["All", ...Array.from(new Set(skills.map((s) => s.author)))].map((author) => (
+              <button key={author} onClick={() => setSkillAuthor(author)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillAuthor === author ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                {author === "All" ? "All Authors" : author}
+              </button>
+            ))}
+            <span className="ml-auto text-xs text-white/40">
+              <span className="text-white/70 font-semibold">{filteredSkills.length}</span> / {skills.length} skills
+            </span>
           </FadeIn>
 
           {/* Card grid */}
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4" stagger={0.05}>
-            {skills.map((skill) => (
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4" stagger={0.05} delay={0.2}>
+            {filteredSkills.map((skill) => (
               <article
                 key={skill.name}
                 className="skill-card rounded-[30px] bg-white/[0.04] border-[0.5px] border-white/[0.08] p-[18px] flex flex-col gap-3 transition-shadow duration-200 hover:shadow-[0_4px_12px_rgba(255,255,255,0.04)] cursor-default"
               >
-                {/* card-header */}
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[16px] leading-[22px] font-semibold flex-1">{skill.name}</span>
                   <span className="shrink-0 inline-flex items-center rounded-full text-[12px] font-semibold leading-none px-2 py-[3px] bg-white/[0.08] text-white/60">
@@ -282,16 +342,15 @@ export default function App() {
                   </span>
                 </div>
 
-                {/* card-desc */}
                 <p className="text-[14px] leading-[20px] text-white/50 flex-1 line-clamp-3">{skill.description}</p>
 
-                {/* card-meta */}
                 <div className="flex items-center gap-1 flex-wrap mt-auto pt-1 border-t border-white/[0.06]">
                   <span className="inline-flex items-center rounded-full text-[12px] font-semibold leading-none px-2 py-[3px] bg-white/[0.06] text-white/40">
                     {skill.category}
                   </span>
-                  <span className="font-mono text-[11px] text-white/25">v{skill.version}</span>
-                  <span className="ml-auto text-[12px] text-white/25">{skill.author}</span>
+                  <span className="font-mono text-[11px] text-white/25">{skill.version}</span>
+                  <span className="ml-auto text-[11px] text-white/25">{skill.author}</span>
+                  {skill.lastUpdate && <span className="text-[11px] text-white/20 ml-2">updated {skill.lastUpdate}</span>}
                 </div>
               </article>
             ))}
@@ -317,8 +376,8 @@ export default function App() {
                   <p className="text-white/50 text-lg leading-relaxed max-w-lg">{cap.description}</p>
                 </div>
                 <div className="flex-1 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/8 relative">
-                  <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-50" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/60 to-transparent" />
+                  <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale brightness-90" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/50 to-transparent" />
                 </div>
               </div>
             ))}
@@ -340,16 +399,19 @@ export default function App() {
 
           <StaggerChildren className="flex flex-wrap justify-center gap-10 md:gap-14" stagger={0.1}>
             {team.map((member) => (
-              <div key={member.name} className="group flex flex-col items-center gap-4">
+              <div key={member.name} className="group flex flex-col items-center gap-4 w-28 md:w-32">
                 {/* Circular avatar */}
                 <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-1 ring-white/15 ring-offset-[3px] ring-offset-[#0a0a0b] bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center transition-all duration-500 group-hover:ring-white/30">
                   <span className="text-lg md:text-xl font-light text-white/30 group-hover:text-white/60 transition-colors duration-500 select-none">
                     {member.initials}
                   </span>
                 </div>
-                <p className="text-white/50 font-medium tracking-tight group-hover:text-white transition-colors duration-300 text-sm">
-                  {member.name}
-                </p>
+                <div className="text-center">
+                  <p className="text-white/50 font-medium tracking-tight group-hover:text-white transition-colors duration-300 text-sm">
+                    {member.name}
+                  </p>
+                  {member.affiliation && <p className="text-white/25 text-xs mt-0.5">{member.affiliation}</p>}
+                </div>
               </div>
             ))}
           </StaggerChildren>
@@ -414,7 +476,7 @@ export default function App() {
       <footer className="relative z-10 py-12 px-6 border-t border-white/[0.04]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="text-sm font-medium text-white/40">Communication Research Agent</span>
-          <p className="text-xs text-white/30">By Xin Jin &middot; MIT License</p>
+          <p className="text-xs text-white/30">Contact: xjin6@outlook.com</p>
         </div>
       </footer>
     </div>
