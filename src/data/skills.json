@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Weibo Topic Scraper",
+    "version": "v0.1.0",
+    "category": "TOOL",
+    "description": "Scrape Sina Weibo topic posts, comments, and user profiles",
+    "author": "@xjin6"
+  },
+  {
+    "name": "Xiaohongshu Scraper",
+    "version": "v0.1.0",
+    "category": "TOOL",
+    "description": "Scrape Xiaohongshu (小红书) notes, comments, and user profiles by keyword",
+    "author": "@xjin6"
+  },
+  {
+    "name": "Structural Equation Modeling",
+    "version": "v0.1.0",
+    "category": "TOOL",
+    "description": "Specify, estimate, and interpret SEM models including CFA and path analysis",
+    "author": "@xjin6"
+  },
+  {
+    "name": "Apa Reference List",
+    "version": "v0.1.0",
+    "category": "TOOL",
+    "description": "Read literature files and generate an APA 7th edition reference list",
+    "author": "@xjin6"
+  },
+  {
+    "name": "Quantitative Analysis",
+    "version": "v1.2",
+    "category": "TOOL",
+    "description": "End-to-end inferential statistics: ANOVA, t-tests, chi-squared, regression, and descriptive analysis on survey data",
+    "author": "@xjin6"
+  }
+]
