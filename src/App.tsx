@@ -124,7 +124,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-40 backdrop-blur-md bg-[#0a0a0b]/80 border-b border-purple-500/15">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2.5 group">
-            <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="Logo" className="w-7 h-7 rounded-md transition-transform duration-300 group-hover:scale-110" />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo" className="w-7 h-7 rounded-md transition-transform duration-300 group-hover:scale-110" />
             <span className="text-sm font-semibold tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent">Communication Research Agent</span>
           </a>
           <div className="hidden md:flex items-center gap-8">
