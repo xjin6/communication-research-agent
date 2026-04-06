@@ -15,7 +15,10 @@ async function main() {
   }
 
   const res = await fetch(API, { headers });
-  if (!res.ok) throw new Error(`GitHub API ${res.status}: ${await res.text()}`);
+  if (!res.ok) {
+    console.warn(`GitHub API ${res.status} — using existing skills.json as fallback`);
+    return;
+  }
 
   const { content } = await res.json();
   const readme = Buffer.from(content, "base64").toString("utf-8");

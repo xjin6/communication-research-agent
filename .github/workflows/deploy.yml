@@ -36,7 +36,7 @@ jobs:
       - name: Fetch latest skills from comm-agent
         run: node scripts/fetch-skills.mjs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.COMM_AGENT_TOKEN }}
 
       - run: npx tsc -b && npx vite build
 
