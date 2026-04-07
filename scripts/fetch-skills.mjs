@@ -115,12 +115,23 @@ async function main() {
     })
   );
 
-  const output = JSON.stringify(skills, null, 2);
   const fs = await import("fs");
-  fs.writeFileSync(new URL("../src/data/skills.json", import.meta.url), output);
 
+  // Write skills.json
+  fs.writeFileSync(new URL("../src/data/skills.json", import.meta.url), JSON.stringify(skills, null, 2));
   console.log(`Fetched ${skills.length} skills from ${REPO}/${SKILLS_DIR}`);
   skills.forEach((s) => console.log(`  • ${s.name} ${s.version} [${s.category}] — ${s.author} — ${s.lastUpdate}`));
+
+  // Fetch project structure from root README
+  const readmeRes = await tryFetchJSON(`${API_BASE}/readme`);
+  if (readmeRes) {
+    const readmeText = Buffer.from(readmeRes.content, "base64").toString("utf-8");
+    const structureMatch = readmeText.match(/## Structure\s*```[^\n]*\n([\s\S]*?)```/);
+    if (structureMatch) {
+      fs.writeFileSync(new URL("../src/data/structure.txt", import.meta.url), structureMatch[1].trimEnd());
+      console.log("Fetched project structure from README");
+    }
+  }
 }
 
 main().catch((e) => {

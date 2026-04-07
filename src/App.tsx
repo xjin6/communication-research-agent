@@ -38,6 +38,7 @@ const cases = [
 ];
 
 import skillsData from "./data/skills.json";
+import structureText from "./data/structure.txt?raw";
 const skills: { slug?: string; name: string; version: string; category: string; description: string; author: string; lastUpdate?: string }[] = skillsData;
 
 const team = [
@@ -481,19 +482,7 @@ export default function App() {
 
           <FadeIn delay={0.1} className="text-center"><h3 className="text-lg font-medium mb-6">Project Structure</h3></FadeIn>
           <FadeIn delay={0.15} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-8 font-mono text-sm leading-7 text-white/50 overflow-x-auto">
-            <pre>{`comm-agent/
-├── CLAUDE.md                 # Agent instructions
-├── general-knowledge/        # Shared theory & methods knowledge base
-├── general-skill/            # Reusable research skills (scraping, analysis, etc.)
-└── your-project/             # Your personal workspace (not shared)
-    ├── project-example1/     # One folder per project
-    │   ├── context.md        # Describe your study here
-    │   ├── data/             # Your raw data
-    │   ├── knowledge/        # Your literature & notes
-    │   ├── literature/       # Drop PDFs/BIB/RIS here for APA reference generation
-    │   └── output/           # Agent-generated results
-    └── project-example2/     # Another project
-        └── ...`}</pre>
+            <pre>{structureText}</pre>
           </FadeIn>
         </div>
       </section>
