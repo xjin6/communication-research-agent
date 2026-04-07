@@ -23,6 +23,12 @@ async function fetchJSON(url) {
   return res.json();
 }
 
+async function tryFetchJSON(url) {
+  const res = await fetch(url, { headers: makeHeaders() });
+  if (!res.ok) return null;
+  return res.json();
+}
+
 function parseReadme(text) {
   const lines = text.split("\n");
 
@@ -77,7 +83,11 @@ function parseReadme(text) {
 
 async function main() {
   // List all skill-* directories under general-skill/
-  const entries = await fetchJSON(`${API_BASE}/contents/${SKILLS_DIR}`);
+  const entries = await tryFetchJSON(`${API_BASE}/contents/${SKILLS_DIR}`);
+  if (!entries) {
+    console.warn("Could not reach comm-agent repo (missing token or private repo). Using existing skills.json as fallback.");
+    return;
+  }
   const skillDirs = entries.filter((e) => e.type === "dir" && e.name.startsWith("skill-"));
 
   const skills = await Promise.all(
