@@ -95,11 +95,12 @@ async function main() {
       try {
         const readmeRes = await fetchJSON(`${API_BASE}/contents/${SKILLS_DIR}/${dir.name}/README.md`);
         const text = Buffer.from(readmeRes.content, "base64").toString("utf-8");
-        return parseReadme(text);
+        return { slug: dir.name, ...parseReadme(text) };
       } catch (e) {
         console.warn(`  ⚠ Could not fetch README for ${dir.name}: ${e.message}`);
         // Fallback: derive name from folder, minimal info
         return {
+          slug: dir.name,
           name: dir.name
             .replace(/^skill-/, "")
             .replace(/-/g, " ")
