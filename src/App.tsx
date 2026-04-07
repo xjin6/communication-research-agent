@@ -313,6 +313,9 @@ export default function App() {
 
           {/* Filters */}
           <FadeIn delay={0.2} className="flex flex-wrap items-center gap-3 mb-6">
+            <button onClick={() => setSkillCategories([])} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillCategories.length === 0 ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+              All type
+            </button>
             {(["analysis", "scraper", "utility"] as const).map((cat) => {
               const active = skillCategories.includes(cat);
               return (
@@ -322,6 +325,9 @@ export default function App() {
               );
             })}
             <span className="mx-2 w-px h-4 bg-white/10" />
+            <button onClick={() => setSkillAuthors([])} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillAuthors.length === 0 ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+              All authors
+            </button>
             {Array.from(new Set(skills.map((s) => s.author))).map((author) => {
               const active = skillAuthors.includes(author);
               return (
