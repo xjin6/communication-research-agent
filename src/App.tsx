@@ -28,7 +28,7 @@ const pillars = [
   { title: "General Knowledge", description: "Shared theory and methods knowledge base that grounds the agent in communication studies fundamentals.", icon: BookOpen, img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop" },
   { title: "Research Skills", description: "Modular, reusable skills for data scraping, statistical analysis, and academic writing.", icon: PenTool, img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" },
   { title: "Your Project Context", description: "Describe your study in context.md — the agent reads it automatically and tailors every response.", icon: FileText, img: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800&h=600&fit=crop" },
-  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", icon: Terminal, img: "https://assets.apidog.com/blog-next/2025/09/6826a6227b1fbd47034d1936_claude-code.webp", imgPosition: "center right" },
+  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", icon: Terminal, img: "https://assets.apidog.com/blog-next/2025/09/6826a6227b1fbd47034d1936_claude-code.webp", imgBg: { size: "75%", position: "70% center" } },
 ];
 
 const cases = [
@@ -286,7 +286,11 @@ export default function App() {
             {pillars.map((p) => (
               <div key={p.title} data-suppress-splash className="rounded-xl bg-white/[0.03] border border-white/8 flex flex-col overflow-hidden">
                 <div className="w-full aspect-[4/3] relative overflow-hidden">
-                  <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-90" style={p.imgPosition ? { objectPosition: p.imgPosition } : undefined} loading="lazy" />
+                  {p.imgBg ? (
+                    <div className="absolute inset-0 opacity-60" style={{ backgroundImage: `url(${p.img})`, backgroundSize: p.imgBg.size, backgroundPosition: p.imgBg.position, backgroundRepeat: "no-repeat", filter: "grayscale(1) brightness(0.9)" }} />
+                  ) : (
+                    <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-90" loading="lazy" />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
                 </div>
                 <div className="p-5 flex flex-col">
