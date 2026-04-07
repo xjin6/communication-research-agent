@@ -24,3 +24,46 @@ body {
   50% { opacity: 0; }
 }
 
+@property --trail-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-trail {
+  to { --trail-angle: 360deg; }
+}
+
+.card-trail-mask {
+  animation: rotate-trail 5s linear infinite;
+  mask-image: conic-gradient(
+    from var(--trail-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(255,255,255,0.1) 15deg,
+    rgba(255,255,255,0.5) 45deg,
+    white 75deg,
+    rgba(255,255,255,0.5) 95deg,
+    rgba(255,255,255,0.1) 110deg,
+    transparent 130deg,
+    transparent 360deg
+  );
+  -webkit-mask-image: conic-gradient(
+    from var(--trail-angle) at 50% 50%,
+    transparent 0deg,
+    rgba(255,255,255,0.1) 15deg,
+    rgba(255,255,255,0.5) 45deg,
+    white 75deg,
+    rgba(255,255,255,0.5) 95deg,
+    rgba(255,255,255,0.1) 110deg,
+    transparent 130deg,
+    transparent 360deg
+  );
+}
+
+@keyframes pdrift {
+  0%   { transform: translate(0, 0);         opacity: var(--p-lo); }
+  30%  { transform: translate(var(--p-dx), var(--p-dy)); opacity: var(--p-hi); }
+  60%  { transform: translate(calc(var(--p-dx) * -0.5), calc(var(--p-dy) * 0.8)); opacity: var(--p-lo); }
+  100% { transform: translate(0, 0);         opacity: var(--p-lo); }
+}
+

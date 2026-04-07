@@ -28,7 +28,7 @@ const pillars = [
   { title: "General Knowledge", description: "Shared theory and methods knowledge base that grounds the agent in communication studies fundamentals.", icon: BookOpen, img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop" },
   { title: "Research Skills", description: "Modular, reusable skills for data scraping, statistical analysis, and academic writing.", icon: PenTool, img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" },
   { title: "Your Project Context", description: "Describe your study in context.md — the agent reads it automatically and tailors every response.", icon: FileText, img: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800&h=600&fit=crop" },
-  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", icon: Terminal, img: "https://assets.apidog.com/blog-next/2025/09/6826a6227b1fbd47034d1936_claude-code.webp", imgBg: { size: "75%", position: "70% center" } },
+  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", icon: Terminal, img: "https://assets.apidog.com/blog-next/2025/09/6826a6227b1fbd47034d1936_claude-code.webp", imgBg: { size: "105%", position: "center -5%" } },
 ];
 
 const cases = [
@@ -42,12 +42,12 @@ import structureText from "./data/structure.txt?raw";
 const skills: { slug?: string; name: string; version: string; category: string; description: string; author: string; lastUpdate?: string }[] = skillsData;
 
 const team = [
-  { name: "Xin Jin", initials: "XJ", affiliation: "Microsoft" },
-  { name: "Xingjian Wang", initials: "XW", affiliation: "Tsinghua University" },
-  { name: "Qianying Ye", initials: "QY", affiliation: "The Hong Kong Polytechnic University" },
-  { name: "Sha Qiu", initials: "SQ", affiliation: "University of Macau" },
-  { name: "Lihan Yan", initials: "LY", affiliation: "Nanjing University" },
-  { name: "Yundi Zhang", initials: "YZ", affiliation: "Fudan University" },
+  { name: "Xin Jin", initials: "XJ", affiliation: "Microsoft", url: "https://www.microsoft.com/en-us/research/people/jxi/", avatarPos: "0% 4%" },
+  { name: "Xingjian Wang", initials: "XW", affiliation: "Tsinghua University", avatarPos: "50% 4%", url: "https://github.com/W-Klaus" },
+  { name: "Qianying Ye", initials: "QY", affiliation: "The Hong Kong Polytechnic University", url: "https://qianyingye.github.io/", avatarPos: "100% 4%" },
+  { name: "Sha Qiu", initials: "SQ", affiliation: "University of Macau", avatarPos: "0% 100%", url: "https://github.com/sarahqiu-lab" },
+  { name: "Lihan Yan", initials: "LY", affiliation: "Nanjing University", url: "https://yan-lihan.github.io/", avatarPos: "50% 100%" },
+  { name: "Yundi Zhang", initials: "YZ", affiliation: "Fudan University", avatarPos: "100% 100%", url: "https://github.com/Zhang-Yundi" },
 ];
 
 const dynamicPhrases = ["data collection", "statistical analysis", "literature review", "paper writing", "AI peer review"];
@@ -121,6 +121,98 @@ function StaggerChildren({ children, className = "", stagger = 0.1, delay = 0 }:
     return () => { ScrollTrigger.getAll().forEach(t => { if (t.trigger === el) t.kill(); }); };
   }, [stagger, delay]);
   return <div ref={ref} className={className} data-animate-stagger>{children}</div>;
+}
+
+// Group A: leader + followers moving up-right
+// Group B: leader + followers moving down-left
+// Solo: scattered accents
+const PARTICLE_DOTS = [
+  // Group A — leader + followers
+  { x: 72, y: 30, s: 9,   dur: 5.2, del: 0,    dx: 22,  dy: -26, lo: 0.55, hi: 0.95, color: "240,225,255" },
+  { x: 80, y: 40, s: 5,   dur: 5.2, del: 0.3,  dx: 20,  dy: -22, lo: 0.35, hi: 0.78, color: "235,215,255" },
+  { x: 66, y: 22, s: 4,   dur: 5.2, del: 0.6,  dx: 24,  dy: -28, lo: 0.25, hi: 0.68, color: "230,210,255" },
+  { x: 85, y: 18, s: 3,   dur: 5.2, del: 0.9,  dx: 18,  dy: -20, lo: 0.2,  hi: 0.58, color: "225,205,255" },
+  { x: 74, y: 48, s: 3.5, dur: 5.2, del: 1.2,  dx: 20,  dy: -24, lo: 0.15, hi: 0.5,  color: "220,200,255" },
+  // Group B — leader + followers
+  { x: 78, y: 65, s: 8,   dur: 6.0, del: 1.0,  dx: -18, dy: 24,  lo: 0.5,  hi: 0.92, color: "238,220,255" },
+  { x: 68, y: 74, s: 4.5, dur: 6.0, del: 1.35, dx: -16, dy: 22,  lo: 0.3,  hi: 0.72, color: "233,215,255" },
+  { x: 88, y: 58, s: 4,   dur: 6.0, del: 1.65, dx: -20, dy: 26,  lo: 0.2,  hi: 0.65, color: "228,210,255" },
+  { x: 76, y: 80, s: 3,   dur: 6.0, del: 1.95, dx: -14, dy: 20,  lo: 0.15, hi: 0.55, color: "223,205,255" },
+  // Solos
+  { x: 60, y: 50, s: 6,   dur: 6.8, del: 2.2,  dx: 18,  dy: -18, lo: 0.3,  hi: 0.82, color: "242,228,255" },
+  { x: 92, y: 35, s: 4.5, dur: 6.3, del: 0.5,  dx: -16, dy: -20, lo: 0.25, hi: 0.7,  color: "236,218,255" },
+  { x: 82, y: 85, s: 4,   dur: 5.6, del: 2.8,  dx: 20,  dy: 14,  lo: 0.2,  hi: 0.65, color: "230,212,255" },
+  { x: 63, y: 15, s: 3.5, dur: 7.2, del: 1.8,  dx: -12, dy: -22, lo: 0.2,  hi: 0.6,  color: "238,222,255" },
+  { x: 95, y: 70, s: 3,   dur: 5.9, del: 3.2,  dx: -18, dy: 16,  lo: 0.15, hi: 0.55, color: "232,214,255" },
+  { x: 58, y: 88, s: 5,   dur: 6.4, del: 0.7,  dx: 20,  dy: -26, lo: 0.2,  hi: 0.72, color: "240,222,255" },
+  { x: 90, y: 88, s: 3.5, dur: 7.0, del: 2.0,  dx: -14, dy: -22, lo: 0.15, hi: 0.58, color: "234,216,255" },
+  { x: 70, y: 10, s: 4,   dur: 5.5, del: 1.5,  dx: 18,  dy: 26,  lo: 0.2,  hi: 0.65, color: "242,226,255" },
+  { x: 55, y: 65, s: 3,   dur: 6.8, del: 3.5,  dx: -26, dy: -16, lo: 0.15, hi: 0.52, color: "228,210,255" },
+  // 4 extra
+  { x: 83, y: 22, s: 4,   dur: 6.1, del: 2.3,  dx: -22, dy: -28, lo: 0.2,  hi: 0.68, color: "238,220,255" },
+  { x: 62, y: 72, s: 3.5, dur: 5.4, del: 0.4,  dx: 24,  dy: 18,  lo: 0.2,  hi: 0.62, color: "232,214,255" },
+  { x: 95, y: 55, s: 5,   dur: 6.9, del: 1.1,  dx: -18, dy: -24, lo: 0.25, hi: 0.7,  color: "240,224,255" },
+  { x: 75, y: 95, s: 3,   dur: 5.8, del: 2.9,  dx: 22,  dy: -20, lo: 0.15, hi: 0.55, color: "230,212,255" },
+];
+
+function ParticleCard() {
+  return (
+    <a href="https://claude.com/plugins/skill-creator" target="_blank" rel="noopener noreferrer"
+      className="skill-card rounded-[30px] border-[0.5px] border-white/[0.08] p-[18px] flex flex-col gap-3 transition-shadow duration-200 hover:shadow-[0_4px_12px_rgba(255,255,255,0.04)] cursor-pointer relative"
+    >
+      {/* Background + particles clipped to card */}
+      <div className="absolute inset-0 rounded-[30px] overflow-hidden bg-white/[0.04] pointer-events-none">
+        {PARTICLE_DOTS.map((d, i) => (
+          <div key={i} style={{
+            position: "absolute", left: `${d.x}%`, top: `${d.y}%`,
+            width: d.s, height: d.s, borderRadius: "50%",
+            background: `radial-gradient(circle, rgba(${d.color},0.85) 0%, rgba(${d.color},0) 100%)`,
+            "--p-dx": `${d.dx}px`, "--p-dy": `${d.dy}px`,
+            "--p-lo": d.lo, "--p-hi": d.hi,
+            animation: `pdrift ${d.dur}s ease-in-out ${d.del}s infinite`,
+          } as React.CSSProperties} />
+        ))}
+      </div>
+      {/* Orbiting comet trail — overflow:visible straddles card border */}
+      <svg style={{ overflow: "visible" }} className="absolute inset-0 w-full h-full pointer-events-none card-trail-mask" viewBox="0 0 300 175" preserveAspectRatio="none">
+        <defs>
+          <filter id="trail-blur" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="4" result="b" />
+            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        {/* Full border — mask rotates to reveal only the arc portion */}
+        <path d="M 29 1 H 271 Q 299 1 299 29 V 146 Q 299 174 271 174 H 29 Q 1 174 1 146 V 29 Q 1 1 29 1"
+          fill="none" stroke="rgba(210,175,255,0.7)" strokeWidth="2.5" strokeLinecap="round"
+          filter="url(#trail-blur)" />
+      </svg>
+      <div className="relative z-10 flex flex-col gap-3 h-full">
+        <div className="flex items-start justify-between gap-2">
+          <span className="text-[16px] leading-[22px] font-semibold flex-1">Keep developing new skills</span>
+        </div>
+        <p className="text-[14px] leading-[20px] text-white/50 flex-1 line-clamp-3">You can also contribute. Build a skill, share it with us, and we'll include it in the agent. Let's help more researchers do better work.</p>
+        <div className="flex items-center gap-2 mt-auto pt-1 border-t border-white/[0.06]">
+          <span className="text-[11px] text-white/30">Claude Code Skill Creator</span>
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      onClick={() => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+      className="shrink-0 text-white/30 hover:text-white/70 transition-colors duration-200"
+      title="Copy"
+    >
+      {copied
+        ? <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        : <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+      }
+    </button>
+  );
 }
 
 const navItems = ["About", "Skills", "Cases", "Team", "Deploy"];
@@ -245,8 +337,8 @@ export default function App() {
               );
             })}
           </div>
-          <a href="https://github.com/xjin6/comm-agent" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
-            <GithubIcon size={16} />
+          <a href="https://github.com/xjin6/comm-agent" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-semibold tracking-tight bg-gradient-to-r from-white/90 to-white/60 bg-clip-text text-transparent hover:from-white hover:to-white/80 transition-all duration-300">
+            <GithubIcon size={15} className="text-white/70" />
             GitHub
           </a>
         </div>
@@ -287,9 +379,9 @@ export default function App() {
               <div key={p.title} data-suppress-splash className="rounded-xl bg-white/[0.03] border border-white/8 flex flex-col overflow-hidden">
                 <div className="w-full aspect-[4/3] relative overflow-hidden">
                   {p.imgBg ? (
-                    <div className="absolute inset-0 opacity-75" style={{ backgroundImage: `url(${p.img})`, backgroundSize: p.imgBg.size, backgroundPosition: p.imgBg.position, backgroundRepeat: "no-repeat", filter: "grayscale(0.6) brightness(0.85)" }} />
+                    <div className="absolute inset-0 opacity-70" style={{ backgroundImage: `url(${p.img})`, backgroundSize: p.imgBg.size, backgroundPosition: p.imgBg.position, backgroundRepeat: "no-repeat", filter: "grayscale(0.75) brightness(0.85)" }} />
                   ) : (
-                    <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-75" style={{ filter: "grayscale(0.6) brightness(0.85)" }} loading="lazy" />
+                    <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-70" style={{ filter: "grayscale(0.75) brightness(0.85)" }} loading="lazy" />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
                 </div>
@@ -348,6 +440,7 @@ export default function App() {
 
           {/* Card grid */}
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4" stagger={0.05} delay={0.2}>
+            <ParticleCard />
             {filteredSkills.map((skill) => (
               <a
                 key={skill.name}
@@ -373,6 +466,7 @@ export default function App() {
               </a>
             ))}
           </StaggerChildren>
+
         </div>
       </section>
 
@@ -408,8 +502,8 @@ export default function App() {
                     </motion.span>
                   </div>
                   <div className="flex-1 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/8 relative">
-                    <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-70" style={{ filter: "grayscale(0.4) brightness(0.85)" }} loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/30 to-transparent" />
+                    <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-80" style={{ filter: "grayscale(0.95) brightness(1.05)" }} loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/40 to-transparent" />
                   </div>
                 </div>
               </FadeIn>
@@ -432,19 +526,46 @@ export default function App() {
 
           <StaggerChildren className="flex flex-wrap justify-center gap-10 md:gap-14" stagger={0.1}>
             {team.map((member) => (
-              <div key={member.name} data-suppress-splash className="group flex flex-col items-center gap-4 w-28 md:w-32">
-                {/* Circular avatar */}
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-1 ring-white/15 ring-offset-[3px] ring-offset-[#0a0a0b] bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center transition-all duration-500 group-hover:ring-white/30">
-                  <span className="text-lg md:text-xl font-light text-white/30 group-hover:text-white/60 transition-colors duration-500 select-none">
-                    {member.initials}
-                  </span>
-                </div>
-                <div className="text-center">
-                  <p className="text-white/50 font-medium tracking-tight group-hover:text-white transition-colors duration-300 text-sm">
-                    {member.name}
-                  </p>
-                  {member.affiliation && <p className="text-white/25 text-xs mt-0.5">{member.affiliation}</p>}
-                </div>
+              <div key={member.name} data-suppress-splash className="w-28 md:w-32">
+                {member.url ? (
+                  <motion.a
+                    href={member.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center gap-4"
+                    whileHover="hovered"
+                    animate="rest"
+                  >
+                    <motion.div
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-full ring-1 ring-white/15 ring-offset-[3px] ring-offset-[#0a0a0b] overflow-hidden"
+                      variants={{ rest: { scale: 1, filter: "saturate(0.45)" }, hovered: { scale: 1.06, filter: "saturate(0.85)" } }}
+                      transition={{ duration: 0.3 }}
+                      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}patrick.png)`, backgroundSize: "320% 215%", backgroundPosition: member.avatarPos }}
+                    />
+                    <div className="text-center">
+                      <motion.p
+                        className="text-sm font-medium tracking-tight"
+                        variants={{ rest: { color: "rgba(255,255,255,0.5)", scale: 1 }, hovered: { color: "rgba(255,255,255,1)", scale: 1.06 } }}
+                        transition={{ duration: 0.2 }}
+                      >{member.name}</motion.p>
+                      {member.affiliation && <p className="text-white/25 text-xs mt-0.5">{member.affiliation}</p>}
+                    </div>
+                  </motion.a>
+                ) : (
+                  <div className="group flex flex-col items-center gap-4">
+                    <motion.div
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-full ring-1 ring-white/15 ring-offset-[3px] ring-offset-[#0a0a0b] overflow-hidden"
+                      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}patrick.png)`, backgroundSize: "320% 215%", backgroundPosition: member.avatarPos }}
+                      initial={{ filter: "saturate(0.45)" }}
+                      whileHover={{ filter: "saturate(0.85)" }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <div className="text-center">
+                      <p className="text-sm font-medium tracking-tight text-white/50 group-hover:text-white transition-colors duration-300">{member.name}</p>
+                      {member.affiliation && <p className="text-white/25 text-xs mt-0.5">{member.affiliation}</p>}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </StaggerChildren>
@@ -464,11 +585,18 @@ export default function App() {
             </FadeIn>
           </div>
 
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16" stagger={0.1}>
+          <FadeIn className="text-center mb-10">
+            <div data-suppress-splash className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3">
+              <span className="font-mono text-sm text-white/70 select-all">git clone https://github.com/xjin6/comm-agent.git</span>
+              <CopyButton text="git clone https://github.com/xjin6/comm-agent.git" />
+            </div>
+          </FadeIn>
+
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24" stagger={0.1}>
             {[
               { step: "01", title: "Clone the repo", desc: "git clone the project to your local machine." },
-              { step: "02", title: "Describe your study", desc: "Fill in context.md with your research questions and variables." },
-              { step: "03", title: "Ask the agent", desc: "Start Claude Code and let the agent handle the rest." },
+              { step: "02", title: "Load your context", desc: "Chat with Claude to set up context.md, then drop in your data and literature." },
+              { step: "03", title: "Start researching", desc: "Invoke skills to run tasks, ask questions, and let the agent handle the rest." },
             ].map((item) => (
               <div key={item.step} className="p-6 rounded-2xl border border-white/8 bg-white/[0.02]">
                 <span className="text-xs font-mono text-white/30">{item.step}</span>
@@ -478,13 +606,7 @@ export default function App() {
             ))}
           </StaggerChildren>
 
-          <FadeIn className="text-center">
-            <div className="inline-block rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3 font-mono text-sm text-white/70 select-all mb-8">
-              git clone https://github.com/xjin6/comm-agent.git
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1} className="text-center"><h3 className="text-lg font-medium mb-6">Project Structure</h3></FadeIn>
+          <FadeIn delay={0.1} className="text-center mt-40"><h3 className="text-lg font-medium mb-6">Project Structure</h3></FadeIn>
           <FadeIn delay={0.15} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-8 font-mono text-sm leading-7 text-white/50 overflow-x-auto">
             <pre>{structureText}</pre>
           </FadeIn>
@@ -495,7 +617,11 @@ export default function App() {
       <footer className="relative z-10 py-12 px-6 border-t border-white/[0.04]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="text-sm font-medium text-white/40">Communication Research Agent</span>
-          <p className="text-xs text-white/30">Contact: xjin6@outlook.com</p>
+          <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-white/30">
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" className="hover:text-white/60 transition-colors duration-200">CC BY-NC-ND 4.0</a>
+            <span className="hidden md:inline w-px h-3 bg-white/10" />
+            <p>Contact: xjin6@outlook.com</p>
+          </div>
         </div>
       </footer>
     </div>
