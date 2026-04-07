@@ -146,12 +146,14 @@ function useActiveSection() {
 export default function App() {
   const activeSection = useActiveSection();
   const [heroKey, setHeroKey] = useState(0);
-  const [skillCategory, setSkillCategory] = useState("All");
-  const [skillAuthor, setSkillAuthor] = useState("All");
+  const [skillCategories, setSkillCategories] = useState<string[]>([]);
+  const [skillAuthors, setSkillAuthors] = useState<string[]>([]);
   const filteredSkills = skills.filter((s) =>
-    (skillCategory === "All" || s.category === skillCategory) &&
-    (skillAuthor === "All" || s.author === skillAuthor)
+    (skillCategories.length === 0 || skillCategories.includes(s.category)) &&
+    (skillAuthors.length === 0 || skillAuthors.includes(s.author))
   );
+  const toggleCategory = (val: string) => setSkillCategories((prev) => prev.includes(val) ? prev.filter((c) => c !== val) : [...prev, val]);
+  const toggleAuthor = (val: string) => setSkillAuthors((prev) => prev.includes(val) ? prev.filter((a) => a !== val) : [...prev, val]);
   return (
     <div className="relative min-h-screen bg-[#0a0a0b] text-[#f0ece6] font-sans" style={{ background: "linear-gradient(180deg, #0a0a0b 0%, #0e0e18 20%, #0a0b10 40%, #110e14 60%, #0b0c12 80%, #0a0a0b 100%)" }}>
       <SplashCursor />
@@ -311,21 +313,19 @@ export default function App() {
 
           {/* Filters */}
           <FadeIn delay={0.2} className="flex flex-wrap items-center gap-3 mb-6">
-            {(["All type", "analysis", "scraper", "utility"] as const).map((cat) => {
-              const val = cat === "All type" ? "All" : cat;
-              const active = skillCategory === val;
+            {(["analysis", "scraper", "utility"] as const).map((cat) => {
+              const active = skillCategories.includes(cat);
               return (
-                <button key={cat} onClick={() => setSkillCategory(active ? "All" : val)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                <button key={cat} onClick={() => toggleCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
                   {cat}
                 </button>
               );
             })}
             <span className="mx-2 w-px h-4 bg-white/10" />
-            {["All authors", ...Array.from(new Set(skills.map((s) => s.author)))].map((author) => {
-              const val = author === "All authors" ? "All" : author;
-              const active = skillAuthor === val;
+            {Array.from(new Set(skills.map((s) => s.author))).map((author) => {
+              const active = skillAuthors.includes(author);
               return (
-                <button key={author} onClick={() => setSkillAuthor(active ? "All" : val)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                <button key={author} onClick={() => toggleAuthor(author)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
                   {author}
                 </button>
               );
