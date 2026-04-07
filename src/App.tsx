@@ -311,18 +311,25 @@ export default function App() {
 
           {/* Filters */}
           <FadeIn delay={0.2} className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="text-xs text-white/30 mr-1">Filter</span>
-            {["All", ...Array.from(new Set(skills.map((s) => s.category)))].map((cat) => (
-              <button key={cat} onClick={() => setSkillCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillCategory === cat ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
-                {cat}
-              </button>
-            ))}
+            {(["All type", "analysis", "scraper", "utility"] as const).map((cat) => {
+              const val = cat === "All type" ? "All" : cat;
+              const active = skillCategory === val;
+              return (
+                <button key={cat} onClick={() => setSkillCategory(active ? "All" : val)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                  {cat}
+                </button>
+              );
+            })}
             <span className="mx-2 w-px h-4 bg-white/10" />
-            {["All", ...Array.from(new Set(skills.map((s) => s.author)))].map((author) => (
-              <button key={author} onClick={() => setSkillAuthor(author)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillAuthor === author ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
-                {author === "All" ? "All Authors" : author}
-              </button>
-            ))}
+            {["All authors", ...Array.from(new Set(skills.map((s) => s.author)))].map((author) => {
+              const val = author === "All authors" ? "All" : author;
+              const active = skillAuthor === val;
+              return (
+                <button key={author} onClick={() => setSkillAuthor(active ? "All" : val)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                  {author}
+                </button>
+              );
+            })}
             <span className="ml-auto text-xs text-white/40">
               <span className="text-white/70 font-semibold">{filteredSkills.length}</span> / {skills.length} skills
             </span>
