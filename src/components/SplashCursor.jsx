@@ -962,7 +962,6 @@ function SplashCursor({
       return hash;
     }
 
-    const BASE_SPLAT_FORCE = config.SPLAT_FORCE;
     const BASE_DENSITY_DISSIPATION = config.DENSITY_DISSIPATION;
     let dissipationResetTimer = null;
 
@@ -977,12 +976,12 @@ function SplashCursor({
       let posY = scaleByPixelRatio(e.clientY);
       updatePointerDownData(pointer, -1, posX, posY);
       if (isInteractive(e)) {
-        // Spike dissipation to quickly clear particles on click
-        config.DENSITY_DISSIPATION = 20;
+        // Spike dissipation to rapidly clear existing particles on click
+        config.DENSITY_DISSIPATION = 50;
         if (dissipationResetTimer) clearTimeout(dissipationResetTimer);
         dissipationResetTimer = setTimeout(() => {
           config.DENSITY_DISSIPATION = BASE_DENSITY_DISSIPATION;
-        }, 350);
+        }, 500);
       } else {
         clickSplat(pointer);
       }
@@ -993,8 +992,12 @@ function SplashCursor({
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
-      // Reduce force when hovering interactive elements
-      config.SPLAT_FORCE = isInteractive(e) ? 800 : BASE_SPLAT_FORCE;
+      if (isInteractive(e)) {
+        // Skip particle generation entirely when hovering interactive elements
+        updatePointerMoveData(pointer, posX, posY, pointer.color);
+        pointer.moved = false;
+        return;
+      }
       if (!firstMouseMoveHandled) {
         let color = generateColor();
         updatePointerMoveData(pointer, posX, posY, color);
