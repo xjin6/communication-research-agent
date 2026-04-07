@@ -287,9 +287,9 @@ export default function App() {
               <div key={p.title} data-suppress-splash className="rounded-xl bg-white/[0.03] border border-white/8 flex flex-col overflow-hidden">
                 <div className="w-full aspect-[4/3] relative overflow-hidden">
                   {p.imgBg ? (
-                    <div className="absolute inset-0 opacity-60" style={{ backgroundImage: `url(${p.img})`, backgroundSize: p.imgBg.size, backgroundPosition: p.imgBg.position, backgroundRepeat: "no-repeat", filter: "grayscale(1) brightness(0.9)" }} />
+                    <div className="absolute inset-0 opacity-75" style={{ backgroundImage: `url(${p.img})`, backgroundSize: p.imgBg.size, backgroundPosition: p.imgBg.position, backgroundRepeat: "no-repeat", filter: "grayscale(0.6) brightness(0.85)" }} />
                   ) : (
-                    <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-90" loading="lazy" />
+                    <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-75" style={{ filter: "grayscale(0.6) brightness(0.85)" }} loading="lazy" />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
                 </div>
@@ -408,8 +408,8 @@ export default function App() {
                     </motion.span>
                   </div>
                   <div className="flex-1 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/8 relative">
-                    <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale brightness-90" loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/50 to-transparent" />
+                    <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-70" style={{ filter: "grayscale(0.4) brightness(0.85)" }} loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/30 to-transparent" />
                   </div>
                 </div>
               </FadeIn>
