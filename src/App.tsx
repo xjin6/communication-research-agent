@@ -367,21 +367,23 @@ export default function App() {
               <h2 className="text-3xl md:text-5xl font-normal tracking-tight">Real research, powered by the agent.</h2>
             </FadeIn>
           </div>
-          <StaggerChildren className="space-y-20 md:space-y-28" stagger={0.1}>
+          <div className="space-y-20 md:space-y-28">
             {cases.map((cap, i) => (
-              <div key={cap.title} className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center`}>
-                <div className="flex-1 space-y-4">
-                  <p className="text-purple-400/50 text-xs font-medium font-mono tracking-wider uppercase">{cap.category}</p>
-                  <h3 className="text-2xl md:text-3xl font-normal tracking-tight">{cap.title}</h3>
-                  <p className="text-white/50 text-lg leading-relaxed max-w-lg">{cap.description}</p>
+              <FadeIn key={cap.title} y={50}>
+                <div className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center`}>
+                  <div className="flex-1 space-y-4">
+                    <p className="text-purple-400/50 text-xs font-medium font-mono tracking-wider uppercase">{cap.category}</p>
+                    <h3 className="text-2xl md:text-3xl font-normal tracking-tight">{cap.title}</h3>
+                    <p className="text-white/50 text-lg leading-relaxed max-w-lg">{cap.description}</p>
+                  </div>
+                  <div className="flex-1 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/8 relative">
+                    <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale brightness-90" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/50 to-transparent" />
+                  </div>
                 </div>
-                <div className="flex-1 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/8 relative">
-                  <img src={cap.img} alt={cap.title} className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale brightness-90" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0b]/50 to-transparent" />
-                </div>
-              </div>
+              </FadeIn>
             ))}
-          </StaggerChildren>
+          </div>
         </div>
       </section>
 
