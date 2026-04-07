@@ -966,7 +966,9 @@ function SplashCursor({
     let dissipationResetTimer = null;
 
     function isInteractive(e) {
-      return !!e.target.closest('a, button, [role="button"]');
+      if (e.target.closest('a, button, [role="button"], [data-suppress-splash]')) return true;
+      if (window.getSelection && window.getSelection().toString().length > 0) return true;
+      return false;
     }
 
     // Named event handlers for proper cleanup

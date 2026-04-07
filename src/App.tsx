@@ -283,7 +283,7 @@ export default function App() {
           </div>
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.1}>
             {pillars.map((p) => (
-              <div key={p.title} className="rounded-xl bg-white/[0.03] border border-white/8 flex flex-col overflow-hidden">
+              <div key={p.title} data-suppress-splash className="rounded-xl bg-white/[0.03] border border-white/8 flex flex-col overflow-hidden">
                 <div className="w-full aspect-[4/3] relative overflow-hidden">
                   <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-90" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
@@ -383,7 +383,7 @@ export default function App() {
           <div className="space-y-20 md:space-y-28">
             {cases.map((cap, i) => (
               <FadeIn key={cap.title} y={50}>
-                <div className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center`}>
+                <div data-suppress-splash className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center`}>
                   <div className="flex-1 space-y-4">
                     <p className="text-purple-400/50 text-xs font-medium font-mono tracking-wider uppercase">{cap.category}</p>
                     <h3 className="text-2xl md:text-3xl font-normal tracking-tight">{cap.title}</h3>
@@ -427,7 +427,7 @@ export default function App() {
 
           <StaggerChildren className="flex flex-wrap justify-center gap-10 md:gap-14" stagger={0.1}>
             {team.map((member) => (
-              <div key={member.name} className="group flex flex-col items-center gap-4 w-28 md:w-32">
+              <div key={member.name} data-suppress-splash className="group flex flex-col items-center gap-4 w-28 md:w-32">
                 {/* Circular avatar */}
                 <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-1 ring-white/15 ring-offset-[3px] ring-offset-[#0a0a0b] bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center transition-all duration-500 group-hover:ring-white/30">
                   <span className="text-lg md:text-xl font-light text-white/30 group-hover:text-white/60 transition-colors duration-500 select-none">
