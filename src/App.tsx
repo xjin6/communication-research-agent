@@ -128,26 +128,26 @@ function StaggerChildren({ children, className = "", stagger = 0.1, delay = 0 }:
 // Solo: scattered accents
 const PARTICLE_DOTS = [
   // Group A — leader + followers
-  { x: 72, y: 30, s: 9,   dur: 5.2, del: 0,    dx: 22,  dy: -26, lo: 0.55, hi: 0.95, color: "240,225,255" },
-  { x: 80, y: 40, s: 5,   dur: 5.2, del: 0.3,  dx: 20,  dy: -22, lo: 0.35, hi: 0.78, color: "235,215,255" },
-  { x: 66, y: 22, s: 4,   dur: 5.2, del: 0.6,  dx: 24,  dy: -28, lo: 0.25, hi: 0.68, color: "230,210,255" },
-  { x: 85, y: 18, s: 3,   dur: 5.2, del: 0.9,  dx: 18,  dy: -20, lo: 0.2,  hi: 0.58, color: "225,205,255" },
-  { x: 74, y: 48, s: 3.5, dur: 5.2, del: 1.2,  dx: 20,  dy: -24, lo: 0.15, hi: 0.5,  color: "220,200,255" },
+  { x: 72, y: 30, s: 11,  dur: 5.2, del: 0,    dx: 22,  dy: -26, lo: 0.65, hi: 1.0,  color: "240,225,255" },
+  { x: 80, y: 40, s: 6.5, dur: 5.2, del: 0.3,  dx: 20,  dy: -22, lo: 0.45, hi: 0.88, color: "235,215,255" },
+  { x: 66, y: 22, s: 5.5, dur: 5.2, del: 0.6,  dx: 24,  dy: -28, lo: 0.35, hi: 0.78, color: "230,210,255" },
+  { x: 85, y: 18, s: 4.5, dur: 5.2, del: 0.9,  dx: 18,  dy: -20, lo: 0.28, hi: 0.68, color: "225,205,255" },
+  { x: 74, y: 48, s: 5,   dur: 5.2, del: 1.2,  dx: 20,  dy: -24, lo: 0.22, hi: 0.62, color: "220,200,255" },
   // Group B — leader + followers
-  { x: 78, y: 65, s: 8,   dur: 6.0, del: 1.0,  dx: -18, dy: 24,  lo: 0.5,  hi: 0.92, color: "238,220,255" },
-  { x: 68, y: 74, s: 4.5, dur: 6.0, del: 1.35, dx: -16, dy: 22,  lo: 0.3,  hi: 0.72, color: "233,215,255" },
-  { x: 88, y: 58, s: 4,   dur: 6.0, del: 1.65, dx: -20, dy: 26,  lo: 0.2,  hi: 0.65, color: "228,210,255" },
-  { x: 76, y: 80, s: 3,   dur: 6.0, del: 1.95, dx: -14, dy: 20,  lo: 0.15, hi: 0.55, color: "223,205,255" },
+  { x: 78, y: 65, s: 10,  dur: 6.0, del: 1.0,  dx: -18, dy: 24,  lo: 0.6,  hi: 1.0,  color: "238,220,255" },
+  { x: 68, y: 74, s: 6,   dur: 6.0, del: 1.35, dx: -16, dy: 22,  lo: 0.4,  hi: 0.82, color: "233,215,255" },
+  { x: 88, y: 58, s: 5.5, dur: 6.0, del: 1.65, dx: -20, dy: 26,  lo: 0.3,  hi: 0.75, color: "228,210,255" },
+  { x: 76, y: 80, s: 4.5, dur: 6.0, del: 1.95, dx: -14, dy: 20,  lo: 0.22, hi: 0.65, color: "223,205,255" },
   // Solos
-  { x: 60, y: 50, s: 6,   dur: 6.8, del: 2.2,  dx: 18,  dy: -18, lo: 0.3,  hi: 0.82, color: "242,228,255" },
-  { x: 92, y: 35, s: 4.5, dur: 6.3, del: 0.5,  dx: -16, dy: -20, lo: 0.25, hi: 0.7,  color: "236,218,255" },
-  { x: 82, y: 85, s: 4,   dur: 5.6, del: 2.8,  dx: 20,  dy: 14,  lo: 0.2,  hi: 0.65, color: "230,212,255" },
-  { x: 63, y: 15, s: 3.5, dur: 7.2, del: 1.8,  dx: -12, dy: -22, lo: 0.2,  hi: 0.6,  color: "238,222,255" },
-  { x: 95, y: 70, s: 3,   dur: 5.9, del: 3.2,  dx: -18, dy: 16,  lo: 0.15, hi: 0.55, color: "232,214,255" },
-  { x: 58, y: 88, s: 5,   dur: 6.4, del: 0.7,  dx: 20,  dy: -26, lo: 0.2,  hi: 0.72, color: "240,222,255" },
-  { x: 90, y: 88, s: 3.5, dur: 7.0, del: 2.0,  dx: -14, dy: -22, lo: 0.15, hi: 0.58, color: "234,216,255" },
-  { x: 70, y: 10, s: 4,   dur: 5.5, del: 1.5,  dx: 18,  dy: 26,  lo: 0.2,  hi: 0.65, color: "242,226,255" },
-  { x: 55, y: 65, s: 3,   dur: 6.8, del: 3.5,  dx: -26, dy: -16, lo: 0.15, hi: 0.52, color: "228,210,255" },
+  { x: 60, y: 50, s: 7.5, dur: 6.8, del: 2.2,  dx: 18,  dy: -18, lo: 0.38, hi: 0.9,  color: "242,228,255" },
+  { x: 92, y: 35, s: 6,   dur: 6.3, del: 0.5,  dx: -16, dy: -20, lo: 0.32, hi: 0.8,  color: "236,218,255" },
+  { x: 82, y: 85, s: 5.5, dur: 5.6, del: 2.8,  dx: 20,  dy: 14,  lo: 0.28, hi: 0.75, color: "230,212,255" },
+  { x: 63, y: 15, s: 5,   dur: 7.2, del: 1.8,  dx: -12, dy: -22, lo: 0.28, hi: 0.7,  color: "238,222,255" },
+  { x: 95, y: 70, s: 4.5, dur: 5.9, del: 3.2,  dx: -18, dy: 16,  lo: 0.22, hi: 0.65, color: "232,214,255" },
+  { x: 58, y: 88, s: 6.5, dur: 6.4, del: 0.7,  dx: 20,  dy: -26, lo: 0.28, hi: 0.82, color: "240,222,255" },
+  { x: 90, y: 88, s: 5,   dur: 7.0, del: 2.0,  dx: -14, dy: -22, lo: 0.22, hi: 0.68, color: "234,216,255" },
+  { x: 70, y: 10, s: 5.5, dur: 5.5, del: 1.5,  dx: 18,  dy: 26,  lo: 0.28, hi: 0.75, color: "242,226,255" },
+  { x: 55, y: 65, s: 4.5, dur: 6.8, del: 3.5,  dx: -26, dy: -16, lo: 0.22, hi: 0.62, color: "228,210,255" },
   // 4 extra
   { x: 83, y: 22, s: 4,   dur: 6.1, del: 2.3,  dx: -22, dy: -28, lo: 0.2,  hi: 0.68, color: "238,220,255" },
   { x: 62, y: 72, s: 3.5, dur: 5.4, del: 0.4,  dx: 24,  dy: 18,  lo: 0.2,  hi: 0.62, color: "232,214,255" },
@@ -166,7 +166,7 @@ function ParticleCard() {
           <div key={i} style={{
             position: "absolute", left: `${d.x}%`, top: `${d.y}%`,
             width: d.s, height: d.s, borderRadius: "50%",
-            background: `radial-gradient(circle, rgba(${d.color},0.85) 0%, rgba(${d.color},0) 100%)`,
+            background: `radial-gradient(circle, rgba(${d.color},1) 0%, rgba(${d.color},0) 100%)`,
             "--p-dx": `${d.dx}px`, "--p-dy": `${d.dy}px`,
             "--p-lo": d.lo, "--p-hi": d.hi,
             animation: `pdrift ${d.dur}s ease-in-out ${d.del}s infinite`,
@@ -239,14 +239,12 @@ function useActiveSection() {
 export default function App() {
   const activeSection = useActiveSection();
   const [heroKey, setHeroKey] = useState(0);
-  const [skillCategories, setSkillCategories] = useState<string[]>([]);
-  const [skillAuthors, setSkillAuthors] = useState<string[]>([]);
+  const [skillCategory, setSkillCategory] = useState("All");
+  const [skillAuthor, setSkillAuthor] = useState("All");
   const filteredSkills = skills.filter((s) =>
-    (skillCategories.length === 0 || skillCategories.includes(s.category)) &&
-    (skillAuthors.length === 0 || skillAuthors.includes(s.author))
+    (skillCategory === "All" || s.category === skillCategory) &&
+    (skillAuthor === "All" || s.author === skillAuthor)
   );
-  const toggleCategory = (val: string) => setSkillCategories((prev) => prev.includes(val) ? prev.filter((c) => c !== val) : [...prev, val]);
-  const toggleAuthor = (val: string) => setSkillAuthors((prev) => prev.includes(val) ? prev.filter((a) => a !== val) : [...prev, val]);
   return (
     <div className="relative min-h-screen bg-[#0a0a0b] text-[#f0ece6] font-sans" style={{ background: "linear-gradient(180deg, #0a0a0b 0%, #0e0e18 20%, #0a0b10 40%, #110e14 60%, #0b0c12 80%, #0a0a0b 100%)" }}>
       <SplashCursor />
@@ -410,25 +408,21 @@ export default function App() {
 
           {/* Filters */}
           <FadeIn delay={0.2} className="flex flex-wrap items-center gap-3 mb-6">
-            <button onClick={() => setSkillCategories([])} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillCategories.length === 0 ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
-              All type
-            </button>
-            {(["analysis", "scraper", "utility"] as const).map((cat) => {
-              const active = skillCategories.includes(cat);
+            {(["All type", "analysis", "scraper", "utility"] as const).map((cat) => {
+              const val = cat === "All type" ? "All" : cat;
+              const active = skillCategory === val;
               return (
-                <button key={cat} onClick={() => toggleCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                <button key={cat} onClick={() => setSkillCategory(active && val !== "All" ? "All" : val)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
                   {cat}
                 </button>
               );
             })}
             <span className="mx-2 w-px h-4 bg-white/10" />
-            <button onClick={() => setSkillAuthors([])} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${skillAuthors.length === 0 ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
-              All authors
-            </button>
-            {Array.from(new Set(skills.map((s) => s.author))).map((author) => {
-              const active = skillAuthors.includes(author);
+            {["All authors", ...Array.from(new Set(skills.map((s) => s.author)))].map((author) => {
+              const val = author === "All authors" ? "All" : author;
+              const active = skillAuthor === val;
               return (
-                <button key={author} onClick={() => toggleAuthor(author)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
+                <button key={author} onClick={() => setSkillAuthor(active && val !== "All" ? "All" : val)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${active ? "bg-white/15 text-white" : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60"}`}>
                   {author}
                 </button>
               );
@@ -450,7 +444,7 @@ export default function App() {
                 className="skill-card rounded-[30px] bg-white/[0.04] border-[0.5px] border-white/[0.08] p-[18px] flex flex-col gap-3 transition-shadow duration-200 hover:shadow-[0_4px_12px_rgba(255,255,255,0.04)] cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-[16px] leading-[22px] font-semibold flex-1">{skill.name}</span>
+                  <span className="text-[16px] leading-[22px] font-semibold flex-1">{skill.slug ? skill.slug.replace(/^skill-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : skill.name}</span>
                   <span className="shrink-0 inline-flex items-center rounded-full text-[12px] font-semibold leading-none px-2 py-[3px] bg-white/[0.08] text-white/60">
                     {skill.category}
                   </span>
