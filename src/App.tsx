@@ -388,9 +388,9 @@ export default function App() {
                     <p className="text-purple-400/50 text-xs font-medium font-mono tracking-wider uppercase">{cap.category}</p>
                     <h3 className="text-2xl md:text-3xl font-normal tracking-tight">{cap.title}</h3>
                     <p className="text-white/50 text-lg leading-relaxed max-w-lg">{cap.description}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-white/30 hover:text-white/70 transition-colors duration-200 cursor-pointer group">
+                    <span className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-white transition-all duration-200 cursor-pointer group">
                       View full story
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-x-0.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </span>
                   </div>
                   <div className="flex-1 w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/8 relative">
