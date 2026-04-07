@@ -962,13 +962,30 @@ function SplashCursor({
       return hash;
     }
 
+    const BASE_SPLAT_FORCE = config.SPLAT_FORCE;
+    const BASE_DENSITY_DISSIPATION = config.DENSITY_DISSIPATION;
+    let dissipationResetTimer = null;
+
+    function isInteractive(e) {
+      return !!e.target.closest('a, button, [role="button"]');
+    }
+
     // Named event handlers for proper cleanup
     function handleMouseDown(e) {
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
       updatePointerDownData(pointer, -1, posX, posY);
-      clickSplat(pointer);
+      if (isInteractive(e)) {
+        // Spike dissipation to quickly clear particles on click
+        config.DENSITY_DISSIPATION = 20;
+        if (dissipationResetTimer) clearTimeout(dissipationResetTimer);
+        dissipationResetTimer = setTimeout(() => {
+          config.DENSITY_DISSIPATION = BASE_DENSITY_DISSIPATION;
+        }, 350);
+      } else {
+        clickSplat(pointer);
+      }
     }
 
     let firstMouseMoveHandled = false;
@@ -976,6 +993,8 @@ function SplashCursor({
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
+      // Reduce force when hovering interactive elements
+      config.SPLAT_FORCE = isInteractive(e) ? 800 : BASE_SPLAT_FORCE;
       if (!firstMouseMoveHandled) {
         let color = generateColor();
         updatePointerMoveData(pointer, posX, posY, color);
