@@ -38,7 +38,7 @@ const cases = [
 ];
 
 import skillsData from "./data/skills.json";
-const skills: { name: string; version: string; category: string; description: string; author: string; lastUpdate?: string }[] = skillsData;
+const skills: { slug?: string; name: string; version: string; category: string; description: string; author: string; lastUpdate?: string }[] = skillsData;
 
 const team = [
   { name: "Xin Jin", initials: "XJ", affiliation: "Microsoft" },
@@ -331,28 +331,28 @@ export default function App() {
           {/* Card grid */}
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4" stagger={0.05} delay={0.2}>
             {filteredSkills.map((skill) => (
-              <article
+              <a
                 key={skill.name}
-                className="skill-card rounded-[30px] bg-white/[0.04] border-[0.5px] border-white/[0.08] p-[18px] flex flex-col gap-3 transition-shadow duration-200 hover:shadow-[0_4px_12px_rgba(255,255,255,0.04)] cursor-default"
+                href={skill.slug ? `https://github.com/xjin6/comm-agent/tree/main/general-skill/${skill.slug}` : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="skill-card rounded-[30px] bg-white/[0.04] border-[0.5px] border-white/[0.08] p-[18px] flex flex-col gap-3 transition-shadow duration-200 hover:shadow-[0_4px_12px_rgba(255,255,255,0.04)] cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-[16px] leading-[22px] font-semibold flex-1">{skill.name}</span>
                   <span className="shrink-0 inline-flex items-center rounded-full text-[12px] font-semibold leading-none px-2 py-[3px] bg-white/[0.08] text-white/60">
-                    Skill
+                    {skill.category}
                   </span>
                 </div>
 
                 <p className="text-[14px] leading-[20px] text-white/50 flex-1 line-clamp-3">{skill.description}</p>
 
                 <div className="flex items-center gap-1 flex-wrap mt-auto pt-1 border-t border-white/[0.06]">
-                  <span className="inline-flex items-center rounded-full text-[12px] font-semibold leading-none px-2 py-[3px] bg-white/[0.06] text-white/40">
-                    {skill.category}
-                  </span>
                   <span className="font-mono text-[11px] text-white/25">{skill.version}</span>
                   <span className="ml-auto text-[11px] text-white/25">{skill.author}</span>
                   {skill.lastUpdate && <span className="text-[11px] text-white/20 ml-2">updated {skill.lastUpdate}</span>}
                 </div>
-              </article>
+              </a>
             ))}
           </StaggerChildren>
         </div>

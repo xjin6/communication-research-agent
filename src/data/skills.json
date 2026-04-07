@@ -1,42 +1,56 @@
 [
   {
-    "name": "Weibo Topic Scraper",
+    "slug": "skill-apa-reference-list",
+    "name": "APA Reference List Generator",
     "version": "v0.1.0",
-    "category": "TOOL",
-    "description": "Scrape Sina Weibo topic posts, comments, and user profiles",
+    "category": "utility",
+    "description": "Reads all literature files in `your-project/literature/`, extracts citation metadata using a three-method pipeline, and outputs a complete APA 7th edition reference list.",
     "author": "@xjin6",
-    "lastUpdate": "2025-03-15"
+    "lastUpdate": "2026-03-31"
   },
   {
-    "name": "Xiaohongshu Scraper",
+    "slug": "skill-douyin-trending-topic-scraper",
+    "name": "Douyin Trending Topic Scraper",
     "version": "v0.1.0",
-    "category": "TOOL",
-    "description": "Scrape Xiaohongshu (小红书) notes, comments, and user profiles by keyword",
+    "category": "scraper",
+    "description": "A Python scraper for collecting Douyin trending topic data for academic research. Scrapes the hot search list and videos posted under specific trending topics.",
     "author": "@xjin6",
-    "lastUpdate": "2025-03-20"
+    "lastUpdate": "2026-04-07"
   },
   {
+    "slug": "skill-quantitative-analysis",
+    "name": "Quantitative Analysis",
+    "version": "v0.1.0",
+    "category": "analysis",
+    "description": "End-to-end interactive inferential statistics for survey and tabular data. Guides through data cleaning, variable encoding, hypothesis tests, regression modelling, and Excel export — with user confirmation at every decision point.",
+    "author": "@xjin6",
+    "lastUpdate": "2026-03-31"
+  },
+  {
+    "slug": "skill-structural-equation-modeling",
     "name": "Structural Equation Modeling",
     "version": "v0.1.0",
-    "category": "TOOL",
-    "description": "Specify, estimate, and interpret SEM models including CFA and path analysis",
+    "category": "analysis",
+    "description": "A step-by-step SEM assistant for communication researchers. Covers EFA, CFA, full latent variable SEM, mediation, and moderation analysis using Python. Produces APA-style tables, static AMOS-style path diagrams, and an interactive HTML viewer.",
     "author": "@xjin6",
-    "lastUpdate": "2025-04-01"
+    "lastUpdate": "2026-03-29"
   },
   {
-    "name": "Apa Reference List",
+    "slug": "skill-weibo-topic-scraper",
+    "name": "Weibo Topic Scraper",
     "version": "v0.1.0",
-    "category": "TOOL",
-    "description": "Read literature files and generate an APA 7th edition reference list",
+    "category": "scraper",
+    "description": "A Python scraper for collecting Sina Weibo topic data for academic research. Scrapes posts, comments, and user profiles under any hashtag topic.",
     "author": "@xjin6",
-    "lastUpdate": "2025-03-10"
+    "lastUpdate": "2026-03-26"
   },
   {
-    "name": "Quantitative Analysis",
-    "version": "v1.2",
-    "category": "TOOL",
-    "description": "End-to-end inferential statistics: ANOVA, t-tests, chi-squared, regression, and descriptive analysis on survey data",
+    "slug": "skill-xiaohongshu-search-scraper",
+    "name": "Xiaohongshu Scraper",
+    "version": "v0.1.0",
+    "category": "scraper",
+    "description": "A Python scraper for collecting Xiaohongshu note data for academic research. Scrapes notes, comments, and user profiles by keyword search.",
     "author": "@xjin6",
-    "lastUpdate": "2025-04-05"
+    "lastUpdate": "2026-04-01"
   }
 ]
