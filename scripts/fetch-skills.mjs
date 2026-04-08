@@ -65,18 +65,17 @@ function parseReadme(text) {
     }
   }
 
-  // Author: from "## Author" section — **Name** (@handle)
-  let author = "";
+  // Author: from "## Author" section — collect all **Name** (@handle) lines
+  const authors = [];
   const authorIdx = lines.findIndex((l) => /^##\s+Author/.test(l));
   if (authorIdx !== -1) {
-    for (let i = authorIdx + 1; i < lines.length && i < authorIdx + 6; i++) {
-      const handleMatch = lines[i].match(/\(@(\w+)\)/);
-      if (handleMatch) {
-        author = `@${handleMatch[1]}`;
-        break;
-      }
+    for (let i = authorIdx + 1; i < lines.length; i++) {
+      if (lines[i].startsWith("## ")) break; // next section
+      const handleMatch = lines[i].match(/\(@([\w-]+)\)/);
+      if (handleMatch) authors.push(`@${handleMatch[1]}`);
     }
   }
+  const author = authors.join(", ");
 
   return { name, version, category, description, author, lastUpdate };
 }

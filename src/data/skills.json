@@ -4,7 +4,7 @@
     "name": "APA Reference List Generator",
     "version": "v0.1.0",
     "category": "utility",
-    "description": "Reads all literature files in `your-project/literature/`, extracts citation metadata using a three-method pipeline, and outputs a complete APA 7th edition reference list.",
+    "description": "Reads all literature files in `your-project/project-{name}/literature/`, extracts citation metadata using a three-method pipeline, and outputs a complete APA 7th edition reference list.",
     "author": "@xjin6",
     "lastUpdate": "2026-03-31"
   },
@@ -29,11 +29,11 @@
   {
     "slug": "skill-structural-equation-modeling",
     "name": "Structural Equation Modeling",
-    "version": "v0.1.0",
+    "version": "v0.2.0",
     "category": "analysis",
     "description": "A step-by-step SEM assistant for communication researchers. Covers EFA, CFA, full latent variable SEM, mediation, and moderation analysis using Python. Produces APA-style tables, static AMOS-style path diagrams, and an interactive HTML viewer.",
-    "author": "@xjin6",
-    "lastUpdate": "2026-03-29"
+    "author": "@xjin6, @sarahqiu-lab",
+    "lastUpdate": "2026-04-09"
   },
   {
     "slug": "skill-weibo-topic-scraper",
