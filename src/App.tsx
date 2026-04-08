@@ -235,7 +235,7 @@ export default function App() {
   const [skillAuthor, setSkillAuthor] = useState("All");
   const filteredSkills = skills.filter((s) =>
     (skillCategory === "All" || s.category === skillCategory) &&
-    (skillAuthor === "All" || s.author === skillAuthor)
+    (skillAuthor === "All" || s.author.split(", ").map((a) => a.trim()).includes(skillAuthor))
   );
   return (
     <div className="relative min-h-screen bg-[#0a0a0b] text-[#f0ece6] font-sans" style={{ background: "linear-gradient(180deg, #0a0a0b 0%, #0e0e18 20%, #0a0b10 40%, #110e14 60%, #0b0c12 80%, #0a0a0b 100%)" }}>
@@ -410,7 +410,7 @@ export default function App() {
               );
             })}
             <span className="mx-2 w-px h-4 bg-white/10" />
-            {["All authors", ...Array.from(new Set(skills.map((s) => s.author)))].map((author) => {
+            {["All authors", ...Array.from(new Set(skills.flatMap((s) => s.author.split(", ").map((a) => a.trim())).filter(Boolean)))].map((author) => {
               const val = author === "All authors" ? "All" : author;
               const active = skillAuthor === val;
               return (
