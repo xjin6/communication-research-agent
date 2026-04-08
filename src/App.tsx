@@ -1,13 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-/* Inline SVG icons — replaces lucide-react (38MB) */
-const I = ({ d, size = 24, className = "" }: { d: string; size?: number; className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{d.split("||").map((p, i) => <path key={i} d={p} />)}</svg>
-);
-const BookOpen = ({ size = 24, className = "" }: { size?: number; className?: string }) => <I size={size} className={className} d="M12 7v14||M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />;
-const FileText = ({ size = 24, className = "" }: { size?: number; className?: string }) => <I size={size} className={className} d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z||M14 2v4a2 2 0 0 0 2 2h4||M10 9H8||M16 13H8||M16 17H8" />;
-const PenTool = ({ size = 24, className = "" }: { size?: number; className?: string }) => <I size={size} className={className} d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z||M18 13.5V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7.5" />;
-const Terminal = ({ size = 24, className = "" }: { size?: number; className?: string }) => <I size={size} className={className} d="M12 19h8||m-16-2 6-6-6-6" />;
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplashCursor from "./components/SplashCursor";
@@ -25,10 +17,10 @@ function GithubIcon({ size = 16, className = "" }: { size?: number; className?: 
 /* ── Data ─────────────────────────────────────────────────── */
 
 const pillars = [
-  { title: "General Knowledge", description: "Shared theory and methods knowledge base that grounds the agent in communication studies fundamentals.", icon: BookOpen, img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop" },
-  { title: "Research Skills", description: "Modular, reusable skills for data scraping, statistical analysis, and academic writing.", icon: PenTool, img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" },
-  { title: "Your Project Context", description: "Describe your study in context.md — the agent reads it automatically and tailors every response.", icon: FileText, img: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800&h=600&fit=crop" },
-  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", icon: Terminal, img: "https://assets.apidog.com/blog-next/2025/09/6826a6227b1fbd47034d1936_claude-code.webp", imgBg: { size: "105%", position: "center -5%" } },
+  { title: "General Knowledge", description: "Shared theory and methods knowledge base that grounds the agent in communication studies fundamentals.", img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop" },
+  { title: "Research Skills", description: "Modular, reusable skills for data scraping, statistical analysis, and academic writing.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" },
+  { title: "Your Project Context", description: "Describe your study in context.md — the agent reads it automatically and tailors every response.", img: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800&h=600&fit=crop" },
+  { title: "Claude Code Engine", description: "Powered by Claude Code, enabling multi-step reasoning, file manipulation, and end-to-end research workflows.", img: "https://assets.apidog.com/blog-next/2025/09/6826a6227b1fbd47034d1936_claude-code.webp", imgBg: { size: "105%", position: "center -5%" } },
 ];
 
 const cases = [
