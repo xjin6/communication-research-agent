@@ -29,6 +29,7 @@ const cases = [
   { title: "Interview transcripts to themed findings and draft in one session", category: "Qualitative Research", description: "A researcher brought interview transcripts and used the qualitative thematic skill to identify and group themes, assess data saturation, and generate structured summaries for each theme. The agent then drafted a findings section with full theme descriptions ready for editing.", img: "https://media.nngroup.com/media/editor/2023/08/08/in-person-interview.jpg" },
 ];
 
+declare const __LAST_UPDATED__: string;
 import skillsData from "./data/skills.json";
 import structureText from "./data/structure.txt?raw";
 const skills: { slug?: string; name: string; version: string; category: string; description: string; author: string; lastUpdate?: string }[] = skillsData;
@@ -602,7 +603,7 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 py-12 px-6 border-t border-white/[0.04]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="text-sm font-medium text-white/40">Communication Research Agent</span>
+          <span className="text-sm font-medium text-white/40">Communication Research Agent <span className="text-white/20 font-normal text-xs ml-2">Updated {__LAST_UPDATED__}</span></span>
           <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-white/30">
             <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" className="hover:text-white/60 transition-colors duration-200">CC BY-NC-ND 4.0</a>
             <span className="hidden md:inline w-px h-3 bg-white/10" />
