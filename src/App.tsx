@@ -604,15 +604,20 @@ export default function App() {
       {/* Partner logos */}
       <section className="relative z-10 py-12 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto">
+          <FadeIn className="text-center mb-8">
+            <p className="text-white/40 text-sm tracking-wide">Used by researchers and students from</p>
+          </FadeIn>
           <LogoLoop
             logos={[
               { src: `${import.meta.env.BASE_URL}logos/cityu.png`, alt: "City University of Hong Kong", href: "https://www.cityu.edu.hk/" },
-              { src: `${import.meta.env.BASE_URL}logos/tsinghua.svg`, alt: "Tsinghua University", href: "https://www.tsinghua.edu.cn/" },
-              { src: `${import.meta.env.BASE_URL}logos/polyu.svg`, alt: "The Hong Kong Polytechnic University", href: "https://www.polyu.edu.hk/" },
-              { src: `${import.meta.env.BASE_URL}logos/hust.svg`, alt: "Huazhong University of Science and Technology", href: "https://www.hust.edu.cn/" },
-              { src: `${import.meta.env.BASE_URL}logos/nju.svg`, alt: "Nanjing University", href: "https://www.nju.edu.cn/" },
-              { src: `${import.meta.env.BASE_URL}logos/fudan.svg`, alt: "Fudan University", href: "https://www.fudan.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/polyu.png`, alt: "The Hong Kong Polytechnic University", href: "https://www.polyu.edu.hk/" },
               { src: `${import.meta.env.BASE_URL}logos/um.png`, alt: "University of Macau", href: "https://www.um.edu.mo/" },
+              { src: `${import.meta.env.BASE_URL}logos/tsinghua.svg`, alt: "Tsinghua University", href: "https://www.tsinghua.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/fudan.svg`, alt: "Fudan University", href: "https://www.fudan.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/nju.svg`, alt: "Nanjing University", href: "https://www.nju.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/hust.svg`, alt: "Huazhong University of Science and Technology", href: "https://www.hust.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/ruc.png`, alt: "Renmin University of China", href: "https://www.ruc.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/suda.png`, alt: "Soochow University", href: "https://www.suda.edu.cn/" },
             ]}
             speed={60}
             logoHeight={64}
@@ -628,7 +633,31 @@ export default function App() {
                 rel="noreferrer noopener"
                 className="inline-flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300"
               >
-                <img src={item.src} alt={item.alt} className="h-16 w-auto" draggable={false} style={{ filter: "brightness(0) invert(1)" }} />
+                <span className="relative inline-block h-16">
+                  <img
+                    src={item.src}
+                    alt=""
+                    aria-hidden="true"
+                    className="block h-full w-auto invisible"
+                    draggable={false}
+                  />
+                  <span
+                    role="img"
+                    aria-label={item.alt}
+                    className="absolute inset-0"
+                    style={{
+                      backgroundColor: "white",
+                      WebkitMaskImage: `url(${item.src})`,
+                      maskImage: `url(${item.src})`,
+                      WebkitMaskSize: "contain",
+                      maskSize: "contain",
+                      WebkitMaskRepeat: "no-repeat",
+                      maskRepeat: "no-repeat",
+                      WebkitMaskPosition: "center",
+                      maskPosition: "center",
+                    }}
+                  />
+                </span>
               </a>
             )}
           />
