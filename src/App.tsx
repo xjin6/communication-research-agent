@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplashCursor from "./components/SplashCursor";
+import LogoLoop from "./components/LogoLoop";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -239,7 +240,7 @@ export default function App() {
     (skillAuthor === "All" || s.author.split(", ").map((a) => a.trim()).includes(skillAuthor))
   );
   return (
-    <div className="relative min-h-screen bg-[#0a0a0b] text-[#f0ece6] font-sans" style={{ background: "linear-gradient(180deg, #0a0a0b 0%, #0e0e18 20%, #0a0b10 40%, #110e14 60%, #0b0c12 80%, #0a0a0b 100%)" }}>
+    <div className="relative min-h-screen overflow-x-hidden bg-[#0a0a0b] text-[#f0ece6] font-sans" style={{ background: "linear-gradient(180deg, #0a0a0b 0%, #0e0e18 20%, #0a0b10 40%, #110e14 60%, #0b0c12 80%, #0a0a0b 100%)" }}>
       <SplashCursor />
 
       {/* Section glow layer — sits behind all content, no overflow clipping */}
@@ -597,6 +598,40 @@ export default function App() {
           <FadeIn delay={0.15} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-8 font-mono text-sm leading-7 text-white/50 overflow-x-auto">
             <pre>{structureText}</pre>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* Partner logos */}
+      <section className="relative z-10 py-12 px-6 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <LogoLoop
+            logos={[
+              { src: `${import.meta.env.BASE_URL}logos/cityu.png`, alt: "City University of Hong Kong", href: "https://www.cityu.edu.hk/" },
+              { src: `${import.meta.env.BASE_URL}logos/tsinghua.svg`, alt: "Tsinghua University", href: "https://www.tsinghua.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/polyu.svg`, alt: "The Hong Kong Polytechnic University", href: "https://www.polyu.edu.hk/" },
+              { src: `${import.meta.env.BASE_URL}logos/hust.svg`, alt: "Huazhong University of Science and Technology", href: "https://www.hust.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/nju.svg`, alt: "Nanjing University", href: "https://www.nju.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/fudan.svg`, alt: "Fudan University", href: "https://www.fudan.edu.cn/" },
+              { src: `${import.meta.env.BASE_URL}logos/um.png`, alt: "University of Macau", href: "https://www.um.edu.mo/" },
+            ]}
+            speed={60}
+            logoHeight={64}
+            gap={60}
+            fadeOut
+            fadeOutColor="#0a0a0b"
+            pauseOnHover
+            ariaLabel="Partner institutions"
+            renderItem={(item) => (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300"
+              >
+                <img src={item.src} alt={item.alt} className="h-16 w-auto" draggable={false} style={{ filter: "brightness(0) invert(1)" }} />
+              </a>
+            )}
+          />
         </div>
       </section>
 
